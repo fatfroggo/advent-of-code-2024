@@ -6,8 +6,8 @@ const setupChallengeDay = () => {
     return fs
         .mkdir(`${__dirname}/challenge-${day}`)
         .then(() => {
-            fs.writeFile(`${__dirname}/challenge-${day}/part1.js`, "");
-            return fs.writeFile(`${__dirname}/challenge-${day}/part2.js`, "");
+            fs.writeFile(`${__dirname}/challenge-${day}/part1.js`, "exports.part1 = (inputData) => {\n\n}");
+            return fs.writeFile(`${__dirname}/challenge-${day}/part2.js`, "exports.part2 = (inputData) => {\n\n}");
         })
         .then(() => {
             return fs.mkdir(`${__dirname}/challenge-${day}/__tests__`);
@@ -15,7 +15,7 @@ const setupChallengeDay = () => {
         .then(() => {
             return fs.writeFile(
                 `${__dirname}/challenge-${day}/__tests__/index.test.js`,
-                ""
+                "const { part1 } = require('../part1')\nconst { part2 } = require('../part2')\nconst testData = require('../data/testData/testData')\nconst fullData = require('../data/fullData/fullData')\n\ndescribe('part 1 - ', () => { \ntest('', () => {\n//expect(part1(testData).toBe())\n//expect(part1(fullData).toBe())\n})})\n\ndescribe('part 2 - ', () => { \ntest('', () => {\n//expect(part2(testData).toBe())\n//expect(part2(fullData).toBe())\n})})"
             );
         })
         .then(() => {
