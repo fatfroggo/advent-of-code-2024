@@ -3,7 +3,7 @@ exports.similarityCalculator = (inputArray) => {
     const multipliers = inputArray[1]
 
     let totalScore = 0
-    baseScores.map((score) => totalScore += score*multipliers.filter((item) => +item === +score).length)
+    baseScores.forEach((score) => totalScore += score*multipliers.filter((item) => +item === +score).length)
 
     return totalScore
 }
