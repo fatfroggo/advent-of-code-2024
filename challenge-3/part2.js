@@ -1,22 +1,11 @@
 exports.part2 = (inputData) => {
-  const splitArray = inputData.match(
-    /mul\(\d{1,3},\d{1,3}\)|do\(\)|don't\(\)/g
-  );
+  // find valid muls by sepating by do and don't
+  const validMuls = inputData
+    .split("do()")
+    .map((item) => item.split("don't()")[0].match(/mul\(\d{1,3},\d{1,3}\)/g))
+    .flat();
 
-  const validMuls = [];
-  let isValid = true;
-  for (let i = 0; i < splitArray.length; i++) {
-    if (splitArray[i] === "don't()") isValid = false;
-    if (splitArray[i] === "do()") isValid = true;
-    if (
-      isValid === true &&
-      splitArray[i] !== "don't()" &&
-      splitArray[i] !== "do()"
-    )
-      validMuls.push(splitArray[i]);
-  }
-
-  let total = 0;
+  // isolate numbers alone from the pairs 
   const numbers = validMuls.map((singleMul) =>
     singleMul
       .substring(0, singleMul.length - 1)
@@ -24,8 +13,8 @@ exports.part2 = (inputData) => {
       .split(",")
   );
 
-  for (let i = 0; i < numbers.length; i++) {
-    total += +numbers[i][0] * +numbers[i][1];
-  }
-  return total;
+  // add up the product of each pair and return 
+  return numbers
+    .map((pair) => pair[0] * pair[1])
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 };

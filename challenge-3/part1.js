@@ -1,6 +1,5 @@
 exports.part1 = (inputData) => {
   const validMuls = inputData.match(/mul\(\d{1,3},\d{1,3}\)/g);
-  let total = 0;
   const numbers = validMuls.map((singleMul) =>
     singleMul
       .substring(0, singleMul.length - 1)
@@ -8,8 +7,7 @@ exports.part1 = (inputData) => {
       .split(",")
   );
 
-  for (let i = 0; i < numbers.length; i++) {
-    total += +numbers[i][0] * +numbers[i][1];
-  }
-  return total;
+  return numbers
+    .map((pair) => pair[0] * pair[1])
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 };
