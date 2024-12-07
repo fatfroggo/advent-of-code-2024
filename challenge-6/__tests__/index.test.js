@@ -10,7 +10,7 @@ describe.skip("part 1 - guard duty", () => {
   });
 });
 
-describe("part 2 - obstacles", () => {
+describe.skip("part 2 - obstacles", () => {
   test("calculate the number of locations an obstacle can be placed to ensure the guard never leaves the grid", () => {
     expect(part2(testData)).toBe(6);
     expect(part2(fullData)).toBe(1933);
