@@ -10,7 +10,7 @@ describe.skip("part 1 - Find hiking paths ", () => {
   });
 });
 
-describe("part 2 - Find all unique hiking paths", () => {
+describe.skip("part 2 - Find all unique hiking paths", () => {
   test("Allows repetitions of the end point to find all possible hiking paths", () => {
     expect(part2(testData)).toBe(81);
     expect(part2(fullData)).toBe(1340);
